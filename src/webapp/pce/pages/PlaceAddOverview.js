@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
       width: '30ch',
     },
   },
+  margin: {
+    margin: theme.spacing(1),
+  },
 }));
 
 export default () => {
@@ -24,7 +27,7 @@ export default () => {
 
   const save = e => {
     e.preventDefault()
-    axios.post(`/place/save`, {
+    axios.post(`/detail/save`, {
       contentid, overview,
       proxy: {
         host: 'localhost',
@@ -42,17 +45,27 @@ export default () => {
 
   return (
     <Fragment>
-      <Header img={state.data.header_bgs.contacts}>관광지 개별입력</Header>
+      <Header img={state.data.header_bgs.contacts}>관광지 개요 입력</Header>
       <div>  
       <form className={classes.root} noValidate autoComplete="off">
       <TextField name="contentid" label="contentid" placeholder="contentid" onChange = { e => { setContentid(`${e.target.value}`) }}/>
       <TextField name="overview" style={{ fontSize: '80px' }} label="overview" placeholder="overview" onChange = { e => { setOverview(`${e.target.value}`) }}/>
       </form>
       </div>
-      <Button variant="outlined" color="primary" type="submit" onClick={save}>
+      <Button 
+          variant="outlined" 
+          color="primary" 
+          type="submit" 
+          onClick={save}
+          className={classes.margin}>
         저장
       </Button>
-      <Button variant="outlined" color="primary" type="button" href='/place/list'>
+      <Button 
+          variant="outlined" 
+          color="primary" 
+          type="button" 
+          href='/place/list'
+          className={classes.margin}>
         취소
       </Button>
     </Fragment>
