@@ -12,16 +12,13 @@ import {
 import Home from './webapp/cmm/pages/Home'
 import Survey from './webapp/svy/pages/Survey'
 import Course from './webapp/crs/pages/Course'
-import PlaceList from './webapp/pce/pages/PlaceList'
-import PlaceDetail from './webapp/pce/pages/PlaceDetail'
 import Manage from './webapp/cmm/pages/Manage'
 import { Header, Sidebar, Footer } from "./components/layouts";
 import { ModalForm, ModalVideo, RequestForm } from "./components/ui";
 import { Spinner } from "./components/elements";
 import { useCustomState } from "./state/state";
-import PlaceAdd from "webapp/pce/pages/PlaceAdd";
-import PlaceAddSingle from "webapp/pce/pages/PlaceAddSingle";
-import PlaceAddOverview from "webapp/pce/pages/PlaceAddOverview";
+import PlacePage from "webapp/pce/pages/PlacePage";
+
 
 export default () => {
   const [state, actions] = useCustomState();
@@ -45,35 +42,12 @@ export default () => {
             <Route path="/survey" exact component={Survey} />
             <Route path="/course" exact component={Course} />
             <Route path="/portfolio" exact component={Portfolio} />
-            <Route path="/place/list" exact>
-              <PlaceList
-                sidebar="left"
-                layout="list"
-                title="Blog list left sidebar"
-              />
-              
-            </Route>
-            <Route path="/place/add" exact component={PlaceAdd} />
-            <Route path="/place/addsingle" exact component={PlaceAddSingle} />
-            <Route path="/place/addoverview" exact component={PlaceAddOverview} />
-            <Route path="/blog/:post_id" exact component={PlaceDetail} />
+            <Route path="/place"  component={PlacePage}/>
             <Route path="/manage" exact component={Manage} />
             
             
             
-            <Route path="/blog/:post_id" exact component={PostSingle} />
-            <Route
-              path="/services/:service_id"
-              exact
-              component={ServiceSingle}
-            />
-            <Route path="/team/:member_id" exact component={MemberCard} />
-            <Route
-              path="/portfolio/:project_id"
-              exact
-              component={PortfolioSingle}
-            />
-
+            
             <Route path="/blog/cats/:category" exact>
               <Blog sidebar="left" layout="grid" />
             </Route>

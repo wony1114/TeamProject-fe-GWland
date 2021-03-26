@@ -31,10 +31,9 @@ export default () => {
       axios.post('/place/saveAll', places)
         .then(
           alert(`저장완료`)
-        )
-        
+        ) 
         .catch()
-      places.map((elem)=>{
+      places.map((elem) => {
         const contentid = elem.contentid
         const URL2 = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=ZaKVN0ME8OTmi3RpLmp%2Bzzl9aOxW4T2IP2v%2BRC2UoaDNDT30a5MuNKoeIgbY%2BIzjVE%2FKLMs%2BImOO3WLc78WCPA%3D%3D&contentId=${contentid}&defaultYN=N&addrinfoYN=N&overviewYN=Y&MobileOS=ETC&MobileApp=AppTest&_type=json`
           fetch(URL2, )
@@ -84,6 +83,13 @@ export default () => {
           type="submit" onClick={saveAll}
           className={classes.margin}
         >Tour Api 저장</Button>
+        <Button
+          variant="outlined"
+          size="large"
+          color="secondary"
+          href="/place/addoverview"
+          className={classes.margin}
+        >관광지 개요 입력</Button>
         <span className={styles.divider} style={{ borderColor: THEME.color }} />
       </Layout>    
     </Fragment>

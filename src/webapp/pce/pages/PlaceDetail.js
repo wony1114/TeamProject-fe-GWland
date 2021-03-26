@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/PlaceDetail.module.scss";
 import { Header } from "components/widgets";
@@ -6,16 +6,36 @@ import { useParams } from "react-router-dom";
 import { useCustomState } from "state/state";
 import Layout from "components/layouts/Layout/Layout";
 import THEME from "state/theme";
+import axios from "axios";
 
 export default () => {
   const state = useCustomState()[0];
-  const { post_id } = useParams();
+  const { post_contentid } = useParams();
+  const [place, setPlace] = useState([])
+
+  useEffect(() => {
+    if(post_contentid){
+      axios.get('/place/all')
+      .then((data) => {
+        setPlace(data.data)
+      })
+      .catch((err) => {
+        throw err;
+      })
+    }
+  }, [])
+  useEffect(() => {
+    if(post_contentid){
+      axios.get('/detail/all')
+    }
+  }, [])
+
+
+
+
 
   const post = state.data.posts.filter(
-    (post) => post.id.toString() === post_id
-  )[0];
-  const author = state.data.users.filter(
-    (user) => user.id.toString() === post.user_id
+    (post) => post.contentid.toString() === post_contentid
   )[0];
   const category = state.data.categories.filter(
     (cat) => cat.id === post.category_id.toString()
@@ -31,11 +51,11 @@ export default () => {
   ));
 
   const relatedPosts = related
-    .filter((item) => item.id !== post.id)
+    .filter((item) => item.contentid !== post.contentid)
     .map((item, index) => (
-      <Link to={"/blog/" + item.id} key={index} className={styles.card}>
+      <Link to={"/blog/" + item.contentid} key={index} className={styles.card}>
         <figure
-          style={{ background: "url(" + item.image + ") center/cover" }}
+          style={{ background: "url(" + item.firstimage + ") center/cover" }}
         />
         <span style={{ borderColor: THEME.color }}>{item.title}</span>
       </Link>
@@ -57,7 +77,7 @@ export default () => {
 
   return (
     <Fragment>
-      <Header img={post.image}>{post.title}</Header>
+      <Header img={post.firstimage}>{post.title}</Header>
 
       <Layout col="1">
         <div className={styles.breadcrumbs} style={{ color: THEME.color }}>
@@ -79,29 +99,7 @@ export default () => {
         <article className={styles.article}>{article}</article>
       </Layout>
 
-      <Layout col="1">
-        <figure style={{ height: "1px", background: "#ccc" }} />
-        <div className={styles.author}>
-          <div className={styles.photo}>
-            <figure
-              style={{
-                background: "url(" + author.img + ") center/cover",
-              }}
-            />
-            <div className={styles.social}>
-              <i className="lab la-twitter" />
-              <i className="lab la-facebook-f" />
-              <i className="lab la-instagram" />
-            </div>
-          </div>
-
-          <div className={styles.info}>
-            <h3>{author.name}</h3>
-            <p>{author.about}</p>
-          </div>
-        </div>
-      </Layout>
-
+      
       <Layout col="2">
         {relatedPosts[0]}
         {relatedPosts[1]}

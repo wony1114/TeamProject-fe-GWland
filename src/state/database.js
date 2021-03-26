@@ -193,7 +193,7 @@ const database = {
     },
     {
       name: "관광지",
-      url: "/place/list",
+      url: "/place",
     },
     {
       name: "관리자",
