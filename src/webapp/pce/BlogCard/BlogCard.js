@@ -20,7 +20,7 @@ export default ({ post, layout = "grid" }) => {
         <p>{post.short}</p>
 
         <div className={styles.btn}>
-          <Button to={"/blog/" + post.contentid} hoverType="solid-gray-tb">
+          <Button to={"/place/" + post.contentid} hoverType="solid-gray-tb">
             Read More
           </Button>
         </div>

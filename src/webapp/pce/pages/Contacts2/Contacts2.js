@@ -35,7 +35,7 @@ export default () => {
         .catch()
       places.map((elem) => {
         const contentid = elem.contentid
-        const URL2 = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=ZaKVN0ME8OTmi3RpLmp%2Bzzl9aOxW4T2IP2v%2BRC2UoaDNDT30a5MuNKoeIgbY%2BIzjVE%2FKLMs%2BImOO3WLc78WCPA%3D%3D&contentId=${contentid}&defaultYN=N&addrinfoYN=N&overviewYN=Y&MobileOS=ETC&MobileApp=AppTest&_type=json`
+        const URL2 = `http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?ServiceKey=7hb2dIRIDTkLxtu%2B4LFWyzBfvlvHKUirbLFOQRPT%2Fn%2FP514YgScrPtXK%2B1ErcLcnroGa0Uj8%2B%2FM%2BY5x1CWROaw%3D%3D&contentId=${contentid}&defaultYN=N&addrinfoYN=N&overviewYN=Y&MobileOS=ETC&MobileApp=AppTest&_type=json`
           fetch(URL2, )
           .then((res) => {
             return res.json()
@@ -44,8 +44,8 @@ export default () => {
             const detail = res.response.body.items.item
             console.log(detail.contentid)
             axios.post('/detail/save',{
-              contentid:detail.contentid,
-              overview:detail.overview.slice(0,100)
+              place:elem,
+              overview:detail.overview.slice(0,100),
             })
             .then()
             .catch()

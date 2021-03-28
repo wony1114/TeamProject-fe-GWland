@@ -44,10 +44,11 @@ export default ({ sidebar = "left", layout = "grid", title = "title" }) => {
         );
       })
     }else{
-    axios.get('/place/all')
-    .then(data=>{
+    axios.get('/place/list')
+    .then(resp=>{
+      console.log(resp.data)
       setPlaceArray(
-        data.data.map((post, index) => {
+        resp.data.map((post, index) => {
           return (
             <BlogCard
               key={index}
@@ -56,6 +57,8 @@ export default ({ sidebar = "left", layout = "grid", title = "title" }) => {
           );
         })
       );
+    })
+    .catch((err)=> {
     })
   } 
     setCurrentPage(1);
