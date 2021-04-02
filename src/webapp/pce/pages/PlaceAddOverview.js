@@ -27,7 +27,7 @@ export default () => {
 
   const save = e => {
     e.preventDefault()
-    axios.post(`/detail/save`, {
+    axios.post(`http://localhost:8080/place/save`, {
       contentid, overview,
       proxy: {
         host: 'localhost',

@@ -10,15 +10,15 @@ import {
   PortfolioSingle
 } from "./components/pages";
 import Home from './webapp/cmm/pages/Home'
-import Survey from './webapp/svy/pages/Survey'
+import SurveyPage from './webapp/svy/pages/SurveyPage'
 import Course from './webapp/crs/pages/Course'
-import Manage from './webapp/cmm/pages/Manage'
+import ManagePage from 'webapp/mng/pages/ManagePage'
 import { Header, Sidebar, Footer } from "./components/layouts";
 import { ModalForm, ModalVideo, RequestForm } from "./components/ui";
 import { Spinner } from "./components/elements";
 import { useCustomState } from "./state/state";
 import PlacePage from "webapp/pce/pages/PlacePage";
-
+import AuthRoute from "webapp/cli/components/AuthRoute";
 
 export default () => {
   const [state, actions] = useCustomState();
@@ -39,11 +39,11 @@ export default () => {
           <Header data={state.data.menu} />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/survey" exact component={Survey} />
-            <Route path="/course" exact component={Course} />
+            <Route path="/survey" exact component={SurveyPage} />
+            <AuthRoute authenticated={null} path="/course" componet={Course}/>
             <Route path="/portfolio" exact component={Portfolio} />
             <Route path="/place"  component={PlacePage}/>
-            <Route path="/manage" exact component={Manage} />
+            <Route path="/manage" component={ManagePage} />
             
             
             

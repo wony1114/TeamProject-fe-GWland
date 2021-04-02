@@ -38,12 +38,13 @@ export default () => {
   const [tel, setTel] = useState('')
   const [title, setTitle] = useState('')
   const [zipcode, setZipcode] = useState('')
+  const [overview, setOverview] = useState('')
 
   const save = e => {
     e.preventDefault()
-    axios.post(`/place/save`, {
+    axios.post(`http://localhost:8080/place/save`, {
       addr1, addr2, areacode, cat1, cat2, cat3, contentid, contenttypeid, createdtime, firstimage,
-      firstimage2, mapx, mapy, mlevel, modifiedtime, sigungucode, tel, title, zipcode,
+      firstimage2, mapx, mapy, mlevel, modifiedtime, sigungucode, tel, title, zipcode, overview,
       proxy: {
         host: 'localhost',
         port: 8080,
@@ -63,13 +64,13 @@ export default () => {
       <Header img={state.data.header_bgs.contacts}>관광지 개별입력</Header>
       <div>  
       <form className={classes.root} noValidate autoComplete="off">
+      <TextField name="contentid" label="contentid" placeholder="contentid" onChange = { e => { setContentid(`${e.target.value}`) }}/>
       <TextField name="addr1" style={{ fontSize: '60px' }} label="addr1" placeholder="addr1" onChange = { e => { setAddr1(`${e.target.value}`) }}/>
       <TextField name="addr2" label="addr2" placeholder="addr2" onChange = { e => { setAddr2(`${e.target.value}`) }}/>
       <TextField name="areacode"label="areacode" placeholder="areacode" onChange = { e => { setAreacode(`${e.target.value}`) }}/>
       <TextField name="cat1"label="cat1" placeholder="cat1" onChange = { e => { setCat1(`${e.target.value}`) }}/>
       <TextField name="cat2"label="cat2" placeholder="cat2" onChange = { e => { setCat2(`${e.target.value}`) }}/>
-      <TextField name="cat3"label="cat3" placeholder="cat3" onChange = { e => { setCat3(`${e.target.value}`) }}/>
-      <TextField name="contentid" label="contentid" placeholder="contentid" onChange = { e => { setContentid(`${e.target.value}`) }}/>
+      <TextField name="cat3"label="cat3" placeholder="cat3" onChange = { e => { setCat3(`${e.target.value}`) }}/> 
       <TextField name="contenttypeid"label="contenttypeid" placeholder="contenttypeid" onChange = { e => { setContenttypeid(`${e.target.value}`) }}/>
       <TextField name="createdtime"label="createdtime" placeholder="createdtime" onChange = { e => { setCreatedtime(`${e.target.value}`) }}/>
       <TextField name="firstimage"label="firstimage" placeholder="firstimage" onChange = { e => { setFirstimage(`${e.target.value}`) }}/>
@@ -82,6 +83,7 @@ export default () => {
       <TextField name="tel" label="tel" placeholder="tel" onChange = { e => { setTel(`${e.target.value}`) }}/>
       <TextField name="title" label="title" placeholder="title" onChange = { e => { setTitle(`${e.target.value}`) }}/>
       <TextField name="zipcode" label="zipcode" placeholder="zipcode" onChange = { e => { setZipcode(`${e.target.value}`) }}/>
+      <TextField name="overview" label="overview" placeholder="overview" onChange = { e => { setOverview(`${e.target.value}`) }}/>
       </form>
       </div>
       <Button variant="outlined" color="primary" type="submit" onClick={save}>

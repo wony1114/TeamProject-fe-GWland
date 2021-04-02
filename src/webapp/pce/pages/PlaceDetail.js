@@ -16,11 +16,9 @@ export default () => {
 
   
   useEffect(()=> {
-    axios.get(`/place/find/${contentid}`)
+    axios.get(`http://localhost:8080/place/find/${contentid}`)
     .then((resp)=>{
-      console.log(resp.data)
-      setPlace(resp.data)
-      
+      setPlace(resp.data) 
     })
     .catch((err)=>{
       alert(err)
@@ -31,7 +29,6 @@ export default () => {
   return (
     <Fragment>
       <Header img={place.firstimage}>{place.title}</Header>
-
       <Layout col="1">
         <div className={styles.breadcrumbs} style={{ color: THEME.color }}>
           <Link to="/blog-grid-left-sidebar">Blog</Link>
@@ -41,19 +38,17 @@ export default () => {
           <span>{place.title}</span>
         </div>
       </Layout>
-
       <Layout col="2" padding>
         <div>
           <figure
             className={styles.image}
             style={{ background: "url(" + place.firstimage + ") center/cover" }}
           />
-        </div>
-        
-      </Layout>
+          <p><h3>{place.title}</h3></p>
+          <p>{place.overview}</p>
 
-      
- 
+        </div>
+      </Layout>
     </Fragment>
   );
 };

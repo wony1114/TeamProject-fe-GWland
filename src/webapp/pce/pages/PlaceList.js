@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import styles from "../styles/PlaceList.module.scss";
 import { useCustomState } from "webapp/cmm/state/state";
 import { useParams, useRouteMatch } from "react-router-dom";
@@ -30,10 +30,10 @@ export default ({ sidebar = "left", layout = "grid", title = "title" }) => {
 
   useEffect(() => {
     if(category){
-      axios.get(`/place/cat/${category}`)
-      .then((data)=>{
+      axios.get(`http://localhost:8080/place/cat/${category}`)
+      .then((resp)=>{
         setPlaceArray(
-          data.data.map((post, index) => {
+          resp.data.map((post, index) => {
             return (
               <BlogCard
                 key={index}
@@ -43,10 +43,12 @@ export default ({ sidebar = "left", layout = "grid", title = "title" }) => {
           })
         );
       })
+      .catch((err)=> {
+        alert(err)
+      })
     }else{
-    axios.get('/place/list')
+    axios.get('http://localhost:8080/place/list')
     .then(resp=>{
-      console.log(resp.data)
       setPlaceArray(
         resp.data.map((post, index) => {
           return (
@@ -62,9 +64,7 @@ export default ({ sidebar = "left", layout = "grid", title = "title" }) => {
     })
   } 
     setCurrentPage(1);
-  }, [
-
-  ]);
+  }, []);
 
   return (
     <Fragment>

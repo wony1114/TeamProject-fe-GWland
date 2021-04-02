@@ -30,6 +30,9 @@
 
   & .extra {
     display: flex;
+    
+    overflow: hidden;
+    -webkit-line-clamp: 3;
 
     & a {
       margin-right: 2rem;

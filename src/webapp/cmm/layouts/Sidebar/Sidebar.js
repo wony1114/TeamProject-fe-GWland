@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Sidebar.module.scss";
-import { useCustomState } from "../../../state/state";
-import { Button, Link, Logo } from "../../elements";
-import { Backdrop } from "../../ui";
-import THEME from "../../../state/theme";
+import { useCustomState } from "webapp/cmm/state/state";
+import { Button, Link, Logo } from "components/elements";
+import { Backdrop } from "components/ui";
+import THEME from "state/theme";
 
 export default ({ data = [] }) => {
   const [state, actions] = useCustomState();

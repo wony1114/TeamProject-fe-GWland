@@ -9,18 +9,18 @@ export default ({ post, layout = "grid" }) => {
     <CardImage image={post.firstimage} layout={layout}>
       <div className={styles.card}>
         <h3>
-          <Link to={"/blog/" + post.contentid}>{post.title}</Link>
+          <Link to={"/place/detail/" + post.contentid}>{post.title}</Link>
         </h3>
         <h6>
-          <Link to={"/blog/" + post.contentid}>{post.addr1}</Link><br/>
-          <Link to={"/blog/" + post.contentid}>{post.tel}</Link>
+          <Link to={"/place/detail/" + post.contentid}>{post.addr1}</Link><br/>
+          <Link to={"/place/detail/" + post.contentid}>{post.tel}</Link>
         </h6>  
         <div className={styles.extra}>
         </div>
-        <p>{post.short}</p>
+        <p>{post.overview.substr(0,110)+"......"}</p>
 
         <div className={styles.btn}>
-          <Button to={"/place/" + post.contentid} hoverType="solid-gray-tb">
+          <Button to={"/place/detail/" + post.contentid} hoverType="solid-gray-tb">
             Read More
           </Button>
         </div>
